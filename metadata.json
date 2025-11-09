@@ -1,0 +1,5 @@
+{
+  "name": "FRECUENZY - Electronic Culture Hub",
+  "description": "An immersive web experience for the FRECUENZY electronic music event, featuring event listings, ticket purchasing with Stripe, and community engagement.",
+  "requestFramePermissions": []
+}
