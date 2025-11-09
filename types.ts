@@ -12,4 +12,5 @@ export interface PurchaseSelection {
     tickets: TicketSelection;
     extras: ExtrasSelection;
     emails: string[];
+    phones: string[];
 }

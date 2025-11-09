@@ -22,6 +22,7 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ isOpen, onClose }) => {
     const [tickets, setTickets] = useState({ general: 0, vip: 0 });
     const [extras, setExtras] = useState<{[K in ExtraKey]: number}>({ burger: 0, bus: 0, tattoo: 0, botella: 0 });
     const [ticketEmails, setTicketEmails] = useState<string[]>([]);
+    const [ticketPhones, setTicketPhones] = useState<string[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -53,6 +54,13 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ isOpen, onClose }) => {
             }
             return newEmails;
         });
+        setTicketPhones(currentPhones => {
+            const newPhones = Array(totalTickets).fill('');
+            for (let i = 0; i < Math.min(totalTickets, currentPhones.length); i++) {
+                newPhones[i] = currentPhones[i];
+            }
+            return newPhones;
+        });
     }, [totalTickets]);
 
     useEffect(() => {
@@ -67,6 +75,7 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ isOpen, onClose }) => {
             setTickets({ general: 0, vip: 0 });
             setExtras({ burger: 0, bus: 0, tattoo: 0, botella: 0 });
             setTicketEmails([]);
+            setTicketPhones([]);
             setError(null);
             setIsLoading(false);
             document.body.style.overflow = 'unset';
@@ -92,6 +101,12 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ isOpen, onClose }) => {
         setTicketEmails(newEmails);
     };
 
+    const handlePhoneChange = (index: number, value: string) => {
+        const newPhones = [...ticketPhones];
+        newPhones[index] = value;
+        setTicketPhones(newPhones);
+    };
+
     const handleStripePayment = async () => {
         if (totalTickets === 0) {
             setError("Por favor, selecciona al menos una entrada.");
@@ -104,6 +119,12 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ isOpen, onClose }) => {
             return;
         }
 
+        const invalidPhones = ticketPhones.filter(phone => !phone || phone.trim().length < 9);
+        if (invalidPhones.length > 0 || ticketPhones.some(p => p.trim() === '')) {
+            setError("Por favor, introduce un teléfono válido para cada entrada (mínimo 9 dígitos).");
+            return;
+        }
+
         setError(null);
         setIsLoading(true);
 
@@ -111,21 +132,19 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ isOpen, onClose }) => {
             tickets: tickets,
             extras: extras,
             emails: ticketEmails,
+            phones: ticketPhones,
         };
         
         console.log("Sending to backend:", selection);
         
-        setTimeout(() => {
-            setIsLoading(false);
-            if (Math.random() > 0.1) {
-                alert("Redirigiendo a Stripe... (Simulación)");
-                // const { url, error: apiError } = await createCheckoutSession(selection);
-                // if (url) window.location.href = url;
-                // else setError(apiError || "Error desconocido");
-            } else {
-                setError("No se pudo conectar con el servidor de pagos. Inténtalo de nuevo.");
-            }
-        }, 1500);
+        const { url, error: apiError } = await createCheckoutSession(selection);
+        setIsLoading(false);
+        
+        if (url) {
+            window.location.href = url;
+        } else {
+            setError(apiError || "No se pudo conectar con el servidor de pagos. Inténtalo de nuevo.");
+        }
     };
 
 
@@ -148,13 +167,32 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ isOpen, onClose }) => {
                         <>
                             <h2 className="font-bebas text-3xl text-magenta-neon mt-10 mb-5 tracking-wider">PASO 2: Datos de Asistentes</h2>
                             <div className="bg-magenta-neon/10 border-l-4 border-magenta-neon p-5 rounded-lg mb-5">
-                                <p>Introduce un email para cada entrada. Aquí se enviará el ticket con el QR de acceso.</p>
+                                <p>Introduce email y teléfono para cada entrada. Aquí se enviará el ticket con el QR de acceso.</p>
                             </div>
                             <div className="space-y-4">
                                 {ticketEmails.map((email, index) => (
-                                    <div key={index} className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
-                                        <label htmlFor={`email-${index}`} className="text-purchase-gray w-full sm:w-28 shrink-0">Entrada {index + 1}:</label>
-                                        <input id={`email-${index}`} type="email" placeholder="email@dominio.com" value={email} onChange={(e) => handleEmailChange(index, e.target.value)} className="w-full flex-1 py-3 px-4 bg-gray-carbon border border-gray-smoke text-white-crisp rounded-md outline-none transition-all duration-300 focus:border-magenta-neon" required />
+                                    <div key={index} className="p-4 bg-gray-carbon/50 rounded-lg border border-gray-smoke">
+                                        <label className="text-purchase-gray font-semibold mb-2 block">Entrada {index + 1}:</label>
+                                        <div className="flex flex-col gap-3">
+                                            <input 
+                                                id={`email-${index}`} 
+                                                type="email" 
+                                                placeholder="email@dominio.com" 
+                                                value={email} 
+                                                onChange={(e) => handleEmailChange(index, e.target.value)} 
+                                                className="w-full py-3 px-4 bg-gray-carbon border border-gray-smoke text-white-crisp rounded-md outline-none transition-all duration-300 focus:border-magenta-neon" 
+                                                required 
+                                            />
+                                            <input 
+                                                id={`phone-${index}`} 
+                                                type="tel" 
+                                                placeholder="+34 600 000 000" 
+                                                value={ticketPhones[index]} 
+                                                onChange={(e) => handlePhoneChange(index, e.target.value)} 
+                                                className="w-full py-3 px-4 bg-gray-carbon border border-gray-smoke text-white-crisp rounded-md outline-none transition-all duration-300 focus:border-magenta-neon" 
+                                                required 
+                                            />
+                                        </div>
                                     </div>
                                 ))}
                             </div>

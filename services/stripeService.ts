@@ -3,7 +3,7 @@ import { PurchaseSelection } from '../types';
 
 export const createCheckoutSession = async (selection: PurchaseSelection): Promise<{ url?: string; error?: string }> => {
     try {
-        const response = await fetch('/api/create-checkout-session', {
+        const response = await fetch('https://hvszfjmnqukpdlmbwnzc.supabase.co/functions/v1/create-checkout-session', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
