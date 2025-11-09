@@ -8,8 +8,8 @@ interface PurchaseModalProps {
     onClose: () => void;
 }
 
-const TICKET_PRICE = 25;
-const VIP_PRICE = 45;
+const TICKET_PRICE = 1;
+const VIP_PRICE = 35;
 const EXTRA_PRICES = {
     "burger": 15,
     "bus": 15,
