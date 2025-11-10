@@ -28,11 +28,13 @@ const djs: DJ[] = [
         image: "/events/29nov2025/willi.png",
         bio: "Mark Williams es un veterano que ha pagado sus cuotas durante más de dos décadas en la escena como DJ y productor. Desde los años 80, cuando comenzó su carrera en lugares emblemáticos del Reino Unido como Ministry of Sound y Final Frontier, ha estado sentando las bases de su futuro éxito.\n\nSu trabajo de producción también le ha ganado reconocimiento en todo el mundo y ha lanzado un impresionante catálogo de temas de calidad en algunos de los sellos de techno más respetados del mundo, incluyendo: Tortured, Dark House, Pure Plastic, Phont, Primate y el sello Ultimate Trax de Carl Cox, por nombrar algunos.\n\nAdemás de lanzar en otros sellos, Mark también tiene sus propios sellos: Artificial Vinyl, Real Sessions, Macumba y Real Vinyl. Mark también ha ganado reconocimiento mundial con su hábil y distintivo estilo de DJ. Mezclando tribal, tech house y techno en tres platos y CDJs, sus enérgicas actuaciones le han ayudado a desarrollar una sólida base de fans y le han facilitado presentaciones en lugares como España, Turquía, Eslovenia, Japón, Brasil, Colombia, Macedonia y Suecia."
     },
+    // --- INICIO DE LA MODIFICACIÓN: Biografía de PXT ---
     {
         name: "PXT",
         image: "/events/29nov2025/pxt.JPEG",
-        bio: "DJ residente de Frecuenzy, PXT aporta su talento y energía al lineup de este evento especial. Con un estilo que fusiona lo mejor del techno contemporáneo, PXT se encarga de crear la atmósfera perfecta para una noche inolvidable."
+        bio: "Desde el corazón de Navarra, PxT (Nacho) se ha consolidado como una de las figuras más auténticas de la escena techno underground del norte. Con más de una década en cabina, su evolución musical refleja una conexión profunda con el sonido hipnótico, oscuro, y envolvente que define su identidad actual.\n\nInfluenciado por artistas como Oscar Mulero, Temudo, Lewis Fautzi o DVS1, PxT canaliza en cada set una energía cruda y mental que busca más que hacer bailar: pretende conectar, atrapar y hacer vibrar al oyente en un viaje sensorial donde el techno se siente, se vive y se respira.\n\nSu trayectoria le ha llevado a jugar en cabinas muy tops, en salas de referencia como Zul, Sonora o Ekho, además de ser fundador del movimiento PSYCHOSIS, una plataforma que impulsa la esencia más pura y mental del hardtechno actual.\n\nA día de hoy PxT, se va a hacer cargo de ser residente en Sala Frecuenzy, una sala nueva que viene con la idea de hacerse pionera dentro de la escena Techno, algo idóneo para los amantes del Techno, con muchas ganas, ambición y un proyecto que ilusiona.\n\nAntes de consolidar su actual alias, PxT exploró su faceta más dura bajo el nombre de Pechete, etapa en la que se sumergió en el sonido schranz y descubrió la intensidad que más tarde canalizaría hacia una expresión más introspectiva y profunda."
     }
+    // --- FIN DE LA MODIFICACIÓN ---
 ];
 
 const EventDetailModal: React.FC<EventDetailModalProps> = ({ isOpen, onClose, onBuyTickets }) => {
@@ -96,7 +98,6 @@ const EventDetailModal: React.FC<EventDetailModalProps> = ({ isOpen, onClose, on
                         >
                             COMPRAR ENTRADAS
                         </button>
-                        {/* LÍNEA ELIMINADA */}
                     </div>
 
                     {/* Sección DJs */}
