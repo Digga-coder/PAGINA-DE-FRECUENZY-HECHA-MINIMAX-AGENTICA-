@@ -30,7 +30,7 @@ const EMOJI_MAP = {
 // Objeto para mapear los nombres correctos
 const LABEL_MAP = {
     "burger": "Smash Burger",
-    "bus": "Bus",
+    "bus": "Bus : Ida y Vuelta",
     "tattoo": "Tattoo",
     "botella": "Botella"
 };
