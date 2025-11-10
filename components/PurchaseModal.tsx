@@ -7,6 +7,7 @@ interface PurchaseModalProps {
     onClose: () => void;
 }
 
+// PRECIOS NO MODIFICADOS (15 y 35)
 const TICKET_PRICE = 15;
 const VIP_PRICE = 35;
 const EXTRA_PRICES = {
@@ -24,6 +25,16 @@ const EMOJI_MAP = {
     "tattoo": "🎨",
     "botella": "🍾"
 };
+
+// --- INICIO DE LA MODIFICACIÓN: Mapa de Nombres ---
+// Objeto para mapear los nombres correctos
+const LABEL_MAP = {
+    "burger": "Smash Burger",
+    "bus": "Bus",
+    "tattoo": "Tattoo",
+    "botella": "Botella"
+};
+// --- FIN DE LA MODIFICACIÓN ---
 
 // Texto con las rutas de autobús
 const busRoutesText = `
@@ -192,7 +203,6 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ isOpen, onClose }) => {
                     
                     <h2 className="font-bebas text-3xl text-magenta-neon mt-10 mb-5 tracking-wider">PASO 1: Elige tus Entradas</h2>
                     <div className="flex flex-col gap-4">
-                        {/* --- INICIO DE LA MODIFICACIÓN: Descripciones de Entradas --- */}
                         <ItemCard 
                             label="Entrada General" 
                             description="Acceso general (29 NOV 2025) + 1 Copa" 
@@ -209,7 +219,6 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ isOpen, onClose }) => {
                             onIncrease={() => handleTicketChange('vip', 1)} 
                             onDecrease={() => handleTicketChange('vip', -1)} 
                         />
-                        {/* --- FIN DE LA MODIFICACIÓN --- */}
                     </div>
 
                     {totalTickets > 0 && (
@@ -259,13 +268,16 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ isOpen, onClose }) => {
                             const extraKey = key as ExtraKey;
                             return (
                                 <div key={key}>
+                                    {/* --- INICIO DE LA MODIFICACIÓN: Usar Mapa de Nombres --- */}
                                     <ItemCard 
-                                        label={`${EMOJI_MAP[extraKey] || '✨'} ${extraKey.charAt(0).toUpperCase() + extraKey.slice(1)}`}
+                                        label={`${EMOJI_MAP[extraKey] || '✨'} ${LABEL_MAP[extraKey] || extraKey}`}
                                         price={price} 
                                         quantity={extras[extraKey]} 
                                         onIncrease={() => handleExtraChange(extraKey, 1)} 
                                         onDecrease={() => handleExtraChange(extraKey, -1)} 
                                     />
+                                    {/* --- FIN DE LA MODIFICACIÓN --- */}
+                                    
                                     {extraKey === 'bus' && (
                                         <div className="mt-2">
                                             <button 
