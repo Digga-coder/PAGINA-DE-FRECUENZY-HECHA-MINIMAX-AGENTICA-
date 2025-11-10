@@ -7,7 +7,7 @@ interface PurchaseModalProps {
     onClose: () => void;
 }
 
-const TICKET_PRICE = 1;
+const TICKET_PRICE = 15;
 const VIP_PRICE = 35;
 const EXTRA_PRICES = {
     "burger": 15,
