@@ -96,7 +96,7 @@ const EventDetailModal: React.FC<EventDetailModalProps> = ({ isOpen, onClose, on
                         >
                             COMPRAR ENTRADAS
                         </button>
-                        <p className="text-magenta-neon mt-3 text-lg">Desde 25€</p>
+                        {/* LÍNEA ELIMINADA */}
                     </div>
 
                     {/* Sección DJs */}
