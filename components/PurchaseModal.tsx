@@ -7,7 +7,7 @@ interface PurchaseModalProps {
     onClose: () => void;
 }
 
-const TICKET_PRICE = 15;
+const TICKET_PRICE = 1;
 const VIP_PRICE = 35;
 const EXTRA_PRICES = {
     "burger": 15,
@@ -192,8 +192,24 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ isOpen, onClose }) => {
                     
                     <h2 className="font-bebas text-3xl text-magenta-neon mt-10 mb-5 tracking-wider">PASO 1: Elige tus Entradas</h2>
                     <div className="flex flex-col gap-4">
-                        <ItemCard label="Entrada General" description="Acceso general al evento (29 NOV 2025)" price={TICKET_PRICE} quantity={tickets.general} onIncrease={() => handleTicketChange('general', 1)} onDecrease={() => handleTicketChange('general', -1)} />
-                        <ItemCard label="⭐ Entrada VIP ⭐" description="Acceso Sin Colas + Sala VIP + Copa de Bienvenida" price={VIP_PRICE} quantity={tickets.vip} onIncrease={() => handleTicketChange('vip', 1)} onDecrease={() => handleTicketChange('vip', -1)} />
+                        {/* --- INICIO DE LA MODIFICACIÓN: Descripciones de Entradas --- */}
+                        <ItemCard 
+                            label="Entrada General" 
+                            description="Acceso general (29 NOV 2025) + 1 Copa" 
+                            price={TICKET_PRICE} 
+                            quantity={tickets.general} 
+                            onIncrease={() => handleTicketChange('general', 1)} 
+                            onDecrease={() => handleTicketChange('general', -1)} 
+                        />
+                        <ItemCard 
+                            label="⭐ Entrada VIP ⭐" 
+                            description="Acceso Sin Colas + Sala VIP + 1 Copa + 1 Copa de Champagne" 
+                            price={VIP_PRICE} 
+                            quantity={tickets.vip} 
+                            onIncrease={() => handleTicketChange('vip', 1)} 
+                            onDecrease={() => handleTicketChange('vip', -1)} 
+                        />
+                        {/* --- FIN DE LA MODIFICACIÓN --- */}
                     </div>
 
                     {totalTickets > 0 && (
@@ -250,7 +266,6 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ isOpen, onClose }) => {
                                         onIncrease={() => handleExtraChange(extraKey, 1)} 
                                         onDecrease={() => handleExtraChange(extraKey, -1)} 
                                     />
-                                    {/* --- INICIO DE LA MODIFICACIÓN: Desplegable de Rutas de Bus --- */}
                                     {extraKey === 'bus' && (
                                         <div className="mt-2">
                                             <button 
@@ -268,7 +283,6 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ isOpen, onClose }) => {
                                             )}
                                         </div>
                                     )}
-                                    {/* --- FIN DE LA MODIFICACIÓN --- */}
                                 </div>
                             )
                         })}
