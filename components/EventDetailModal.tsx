@@ -21,12 +21,12 @@ const djs: DJ[] = [
     {
         name: "MARK BROOM",
         image: "/events/29nov2025/broom.png",
-        bio: "Available for techno DJ, LIVE and hybrid sets; as well as house & disco DJ sets. A truly prolific artist, Mark Broom has a myriad of production credits to his name having worked with world renowned labels such as Blueprint Records, Rekids, M-plant, EPM, Cocoon, Bpitch Control, Warp Records and the legendary Ifach with Baby Ford.\n\nIt all started in the summer of '89 when he landed in Tenerife on vacation and stumbled across the delights of the emerging sounds of Chicago and Acid House. Returning to the UK, he immediately went in search of this new found music, a pair of turntables were bought and with it a musical career was born. He has also had the pleasure of reworking material from artists such as Robert Hood, Floorplan, Alan Fitzpatrick and Gary Beck."
+        bio: "Disponible para sets de techno DJ, LIVE e híbridos, así como sets de house y disco. Un artista verdaderamente prolífico, Mark Broom tiene una infinidad de créditos de producción a su nombre, habiendo trabajado con sellos de renombre mundial como Blueprint Records, Rekids, M-plant, EPM, Cocoon, Bpitch Control, Warp Records y el legendario Ifach junto a Baby Ford.\n\nTodo comenzó en el verano del 89 cuando llegó a Tenerife de vacaciones y se topó con las delicias de los sonidos emergentes de Chicago y el Acid House. Al regresar al Reino Unido, inmediatamente se lanzó en busca de esta nueva música: compró un par de tocadiscos y con ellos nació una carrera musical. También ha tenido el placer de remezclar material de artistas como Robert Hood, Floorplan, Alan Fitzpatrick y Gary Beck."
     },
     {
         name: "MARK WILLIAMS",
         image: "/events/29nov2025/willi.png",
-        bio: "Mark Williams is a veteran that has paid his dues over more than two decades on the scene as a DJ and producer. Since the 80s, when he started his career at UK hot spots like the Ministry of Sound and Final Frontier, he has been laying the groundwork for his future success.\n\nHis production work has also gained him acclaim the world over and he has released a staggering catalogue of quality tracks on some of the most respected techno labels in the world including: Tortured, Dark House, Pure Plastic, Phont, Primate, and Carl Cox's Ultimate Trax imprint, to name a few.\n\nIn addition to releasing on other labels, Mark also has his own imprints: Artificial Vinyl, Real Sessions, Macumba and Real Vinyl. Mark has also gained worldwide recognition with his skillful and distinctive DJing style. Mixing tribal, tech house and techno on three decks and CDJs, his rocking performances have helped him to develop a strong fan base and facilitated gigs in places like Spain, Turkey, Slovenia, Japan, Brazil, Colombia, Macedonia, and Sweden."
+        bio: "Mark Williams es un veterano que ha pagado sus cuotas durante más de dos décadas en la escena como DJ y productor. Desde los años 80, cuando comenzó su carrera en lugares emblemáticos del Reino Unido como Ministry of Sound y Final Frontier, ha estado sentando las bases de su futuro éxito.\n\nSu trabajo de producción también le ha ganado reconocimiento en todo el mundo y ha lanzado un impresionante catálogo de temas de calidad en algunos de los sellos de techno más respetados del mundo, incluyendo: Tortured, Dark House, Pure Plastic, Phont, Primate y el sello Ultimate Trax de Carl Cox, por nombrar algunos.\n\nAdemás de lanzar en otros sellos, Mark también tiene sus propios sellos: Artificial Vinyl, Real Sessions, Macumba y Real Vinyl. Mark también ha ganado reconocimiento mundial con su hábil y distintivo estilo de DJ. Mezclando tribal, tech house y techno en tres platos y CDJs, sus enérgicas actuaciones le han ayudado a desarrollar una sólida base de fans y le han facilitado presentaciones en lugares como España, Turquía, Eslovenia, Japón, Brasil, Colombia, Macedonia y Suecia."
     },
     {
         name: "PXT",
@@ -68,19 +68,19 @@ const EventDetailModal: React.FC<EventDetailModalProps> = ({ isOpen, onClose, on
                 </button>
 
                 <div className="p-6 md:p-10">
-                    {/* Título del evento */}
-                    <h1 className="font-bebas text-4xl md:text-6xl text-center mb-8 bg-gradient-to-r from-magenta-neon to-purple-500 text-transparent bg-clip-text">
-                        FRECUENZY 29 NOV 2025
-                    </h1>
-
-                    {/* Cartel del evento */}
+                    {/* Cartel del evento - PRINCIPAL Y DESTACADO */}
                     <div className="mb-10 flex justify-center">
                         <img
                             src="/events/29nov2025/cartel.jpeg"
                             alt="Cartel Frecuenzy 29 NOV 2025"
-                            className="w-full max-w-2xl rounded-lg border-2 border-magenta-neon shadow-[0_0_30px_rgba(255,0,255,0.3)]"
+                            className="w-full max-w-4xl rounded-lg border-4 border-magenta-neon shadow-[0_0_50px_rgba(255,0,255,0.6)] hover:scale-[1.02] transition-transform duration-300"
                         />
                     </div>
+
+                    {/* Título del evento */}
+                    <h1 className="font-bebas text-4xl md:text-6xl text-center mb-8 bg-gradient-to-r from-magenta-neon to-purple-500 text-transparent bg-clip-text">
+                        FRECUENZY 29 NOV 2025
+                    </h1>
 
                     {/* Botón comprar entradas destacado */}
                     <div className="text-center mb-12">
