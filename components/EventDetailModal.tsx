@@ -57,7 +57,10 @@ const EventDetailModal: React.FC<EventDetailModalProps> = ({ isOpen, onClose, on
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-4 overflow-y-auto" onClick={onClose}>
+        <div 
+            className="fixed inset-0 bg-black/95 z-[9999] flex items-start md:items-center justify-center p-4 overflow-y-auto" 
+            onClick={onClose}
+        >
             <div className="relative bg-gray-carbon border-2 border-magenta-neon shadow-[0_0_50px_rgba(255,0,255,0.5)] max-w-6xl w-full my-8 rounded-2xl" onClick={(e) => e.stopPropagation()}>
                 {/* Botón cerrar */}
                 <button
