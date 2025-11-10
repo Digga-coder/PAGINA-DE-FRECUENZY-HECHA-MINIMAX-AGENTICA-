@@ -4,7 +4,7 @@ import PurchaseModal from './PurchaseModal';
 import EventDetailModal from './EventDetailModal';
 
 const eventsData = [
-    { date: '29 NOV 2025', price: '', soldOut: false, comingSoon: false }, // <-- LÍNEA CORREGIDA
+    { date: '29 NOV 2025', price: '', soldOut: false, comingSoon: false },
     { date: 'DIC 2025', price: 'TBA', soldOut: false, comingSoon: true },
     { date: 'DIC 2025', price: 'TBA', soldOut: false, comingSoon: true },
     { date: 'ENE 2026', price: 'TBA', soldOut: false, comingSoon: true },
@@ -38,13 +38,15 @@ const Events: React.FC = () => {
                         <div key={index} className="event-card bg-black-abyss border border-gray-smoke overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:border-magenta-neon hover:shadow-[0_8px_32px_rgba(255,0,255,0.3)] fade-in">
                             {/* Imagen del evento - para el 29 NOV mostramos el cartel */}
                             {index === 0 ? (
-                                <div className="h-52 overflow-hidden cursor-pointer" onClick={openEventDetailModal}>
+                                // --- INICIO DE LA MODIFICACIÓN: Contenedor de imagen ---
+                                <div className="h-52 overflow-hidden cursor-pointer bg-black" onClick={openEventDetailModal}>
                                     <img
                                         src="/events/29nov2025/cartel.jpeg"
                                         alt="Cartel Frecuenzy 29 NOV 2025"
-                                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                                        className="w-full h-full object-contain hover:scale-110 transition-transform duration-300"
                                     />
                                 </div>
+                                // --- FIN DE LA MODIFICACIÓN ---
                             ) : (
                                 <div className="h-52 bg-gradient-to-br from-gray-smoke to-black-abyss flex items-center justify-center text-magenta-neon text-7xl">
                                     ♫
