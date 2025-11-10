@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useMemo } from 'react';
 import type { PurchaseSelection } from '../types';
 import { createCheckoutSession } from '../services/stripeService';
@@ -18,6 +17,38 @@ const EXTRA_PRICES = {
 };
 type ExtraKey = keyof typeof EXTRA_PRICES;
 
+// Objeto para mapear los emojis correctos
+const EMOJI_MAP = {
+    "burger": "🍔",
+    "bus": "🚌",
+    "tattoo": "🎨",
+    "botella": "🍾"
+};
+
+// Texto con las rutas de autobús
+const busRoutesText = `
+Ruta 1:
+21:00 Ablitas
+21:10 Cascante
+21:20 Murchante
+21:30 Tudela
+
+Ruta 2:
+21:00 Buñuel
+21:15 Ribaforada
+21:25 Fustiñana
+21:30 Cabanillas
+
+Ruta 3:
+21:00 Castejón
+21:10 Alfaro
+21:20 Corella
+21:40 Fitero
+
+🕒 Horario de Vuelta
+Todas las rutas volverían a las 07:00, una vez que acabe la fiesta.
+`;
+
 const PurchaseModal: React.FC<PurchaseModalProps> = ({ isOpen, onClose }) => {
     const [tickets, setTickets] = useState({ general: 0, vip: 0 });
     const [extras, setExtras] = useState<{[K in ExtraKey]: number}>({ burger: 0, bus: 0, tattoo: 0, botella: 0 });
@@ -25,6 +56,7 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ isOpen, onClose }) => {
     const [ticketPhones, setTicketPhones] = useState<string[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [busRoutesOpen, setBusRoutesOpen] = useState(false); // Estado para el desplegable
 
     const totalTickets = useMemo(() => tickets.general + tickets.vip, [tickets]);
 
@@ -78,6 +110,7 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ isOpen, onClose }) => {
             setTicketPhones([]);
             setError(null);
             setIsLoading(false);
+            setBusRoutesOpen(false); // Resetea el desplegable al cerrar
             document.body.style.overflow = 'unset';
         }
 
@@ -206,9 +239,39 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({ isOpen, onClose }) => {
                         <p className="text-sm text-purchase-gray">(Ej: 2 tipos de extra = 10% Dto. sobre el total de los extras).</p>
                     </div>
                     <div className="grid md:grid-cols-2 gap-4">
-                        {Object.entries(EXTRA_PRICES).map(([key, price]) => (
-                             <ItemCard key={key} label={`🍔 ${key.charAt(0).toUpperCase() + key.slice(1)}`} price={price} quantity={extras[key as ExtraKey]} onIncrease={() => handleExtraChange(key as ExtraKey, 1)} onDecrease={() => handleExtraChange(key as ExtraKey, -1)} />
-                        ))}
+                        {Object.entries(EXTRA_PRICES).map(([key, price]) => {
+                            const extraKey = key as ExtraKey;
+                            return (
+                                <div key={key}>
+                                    <ItemCard 
+                                        label={`${EMOJI_MAP[extraKey] || '✨'} ${extraKey.charAt(0).toUpperCase() + extraKey.slice(1)}`}
+                                        price={price} 
+                                        quantity={extras[extraKey]} 
+                                        onIncrease={() => handleExtraChange(extraKey, 1)} 
+                                        onDecrease={() => handleExtraChange(extraKey, -1)} 
+                                    />
+                                    {/* --- INICIO DE LA MODIFICACIÓN: Desplegable de Rutas de Bus --- */}
+                                    {extraKey === 'bus' && (
+                                        <div className="mt-2">
+                                            <button 
+                                                onClick={() => setBusRoutesOpen(!busRoutesOpen)}
+                                                className="text-xs text-purchase-cyan hover:underline cursor-pointer"
+                                            >
+                                                {busRoutesOpen ? 'Ocultar Rutas' : 'Mostrar Rutas y Horarios'}
+                                            </button>
+                                            {busRoutesOpen && (
+                                                <div className="text-xs text-purchase-gray mt-2 p-3 bg-gray-carbon rounded-md border border-gray-smoke">
+                                                    <pre className="whitespace-pre-wrap font-sans">
+                                                        {busRoutesText}
+                                                    </pre>
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+                                    {/* --- FIN DE LA MODIFICACIÓN --- */}
+                                </div>
+                            )
+                        })}
                     </div>
 
                     <div className="bg-gradient-to-br from-purchase-green/15 to-purchase-green/5 border-2 border-purchase-green rounded-2xl p-8 mt-10">
