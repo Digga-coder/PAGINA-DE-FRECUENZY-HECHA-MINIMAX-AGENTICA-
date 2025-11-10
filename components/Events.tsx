@@ -1,11 +1,10 @@
-
 import React, { useState } from 'react';
 import VideoModal from './VideoModal';
 import PurchaseModal from './PurchaseModal';
 import EventDetailModal from './EventDetailModal';
 
 const eventsData = [
-    { date: '29 NOV 2025', price: 'Desde 25€', soldOut: false, comingSoon: false },
+    { date: '29 NOV 2025', price: '', soldOut: false, comingSoon: false }, // <-- LÍNEA CORREGIDA
     { date: 'DIC 2025', price: 'TBA', soldOut: false, comingSoon: true },
     { date: 'DIC 2025', price: 'TBA', soldOut: false, comingSoon: true },
     { date: 'ENE 2026', price: 'TBA', soldOut: false, comingSoon: true },
