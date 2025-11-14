@@ -7,8 +7,11 @@ const Hero: React.FC = () => {
     };
 
     return (
+        // Esta línea NUEVA añade padding en móvil (pt-20) para que no lo tape el header
         <section className="relative h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0">
             <video
+                // Esta línea NUEVA usa 'object-contain' en móvil (se ve entero) 
+                // y 'object-cover' en PC (llena la pantalla)
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-contain pointer-events-none md:object-cover"
                 autoPlay
                 loop
@@ -17,19 +20,19 @@ const Hero: React.FC = () => {
             >
                 {/* Vídeo de fondo principal */}
                 <source src="/hero-background.mp4" type="video/mp4" />
-                {/* Opcional: Si conviertes el vídeo a .webm, añádelo aquí para mejor rendimiento */}
                 {/* <source src="/hero-background.webm" type="video/webm" /> */}
             </video>
+            
             <div className="absolute inset-0 bg-black-abyss/60 z-10"></div>
+            
+            // Esta línea NUEVA sube un poco el texto en PC (-mt-10)
             <div className="relative z-20 text-center max-w-7xl px-6 mt-0 md:-mt-10">
                 
-                {/* --- INICIO DE LA MODIFICACIÓN: Logo como Imagen --- */}
                 <img 
                     src="/logo-frecuenzy-hero.svg" 
                     alt="Logo FRECUENZY" 
                     className="w-full max-w-2xl mx-auto mb-8 animate-pulse" 
                 />
-                {/* --- FIN DE LA MODIFICACIÓN --- */}
 
                 <h1 className="font-bebas text-5xl md:text-7xl mb-6 animate-glitchIn">NO SEGUIMOS MODAS. LAS CREAMOS.</h1>
                 <p className="text-lg text-gray-fog font-medium mb-12">El epicentro de la cultura electrónica de vanguardia</p>
