@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteo Exclusivo Frecuenzy</title>
+    <style>
+        /* Estilos básicos para que se vea bien en tu web */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .sorteo-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            max-width: 600px;
+            width: 100%;
+            margin: 20px auto;
+            border: 1px solid #eee;
+        }
+
+        .sorteo-header {
+            padding: 24px 30px;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+        }
+
+        .sorteo-header h1 {
+            margin: 0;
+            color: #111;
+            font-size: 28px;
+        }
+
+        .sorteo-body {
+            padding: 24px 30px;
+        }
+
+        .seccion {
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: #000;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 8px;
+            margin-top: 0;
+        }
+
+        /* Lista de premios */
+        .premios-lista {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .premios-lista li {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        /* Pasos para participar */
+        .pasos-lista {
+            list-style-type: none;
+            padding-left: 0;
+            font-size: 17px;
+        }
+
+        .pasos-lista li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .pasos-lista li span {
+            margin-right: 12px;
+            font-size: 20px;
+            line-height: 1.4;
+        }
+        
+        .warning {
+            background-color: #fffbe6;
+            border: 1px solid #ffe58f;
+            border-radius: 8px;
+            padding: 16px;
+            font-weight: 600;
+            text-align: center;
+            color: #8a6d3b;
+        }
+
+        /* Fechas y Premio */
+        .info-item {
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+
+        .info-item strong {
+            color: #000;
+        }
+
+        .hashtags {
+            text-align: center;
+            font-weight: 600;
+            color: #555;
+            margin-top: 20px;
+        }
+        
+        /* Estilos para las bases legales */
+        .bases-legales {
+            background-color: #f9f9f9;
+            border-top: 1px solid #eee;
+            padding: 24px 30px;
+        }
+        
+        .bases-legales h2 {
+            text-align: center;
+            border: none;
+        }
+
+        .bases-legales ol {
+            padding-left: 20px;
+        }
+
+        .bases-legales li {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 12px;
+        }
+
+        .bases-legales p {
+            font-size: 14px;
+            color: #555;
+        }
+        
+        /* Placeholder para rellenar */
+        .placeholder {
+            color: #d93025; /* Rojo para destacar lo que falta */
+            font-weight: 700;
+            background: #ffebeb;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        /* --- ESTILO PARA LA NUEVA CONDICIÓN --- */
+        .condicion-sorteo {
+            background: #fffbe6;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #ffe58f;
+            font-weight: 600;
+            color: #8a6d3b;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="sorteo-container">
+        
+        <div class="sorteo-header">
+            <h1>🎁 SORTEO EXCLUSIVO FRECUENZY</h1>
+        </div>
+
+        <div class="sorteo-body">
+
+            <div class="seccion premios">
+                <h2>Sorteamos:</h2>
+                <ul class="premios-lista">
+                    <li>🖤 1 TATTOO FLASH exclusivo Frecuenzy</li>
+                    <li>🍔 1 BURGER PREMIUM de Smash & Gorry</li>
+                </ul>
+                <p><strong>Válidos para el 29 de noviembre.</strong></p>
+            </div>
+
+            <div class="seccion pasos">
+                <h2>📋 Cómo Participar:</h2>
+                <ol class="pasos-lista">
+                    <li><span>1️⃣</span> Compartir nuestra story en tu Instagram story etiquetando @frecuenzy</li>
+                    <li><span>2️⃣</span> Unirte a esta comunidad de WhatsApp (si no estás ya dentro)</li>
+                    <li><span>3️⃣</span> Reaccionar con 🔥 a ESE mensaje en la comunidad de WhatsApp</li>
+                </ol>
+                <p class="warning">⚠️ HAY QUE CUMPLIR LOS 3 PASOS PARA PARTICIPAR</p>
+            </div>
+
+            <div class="seccion fechas">
+                <h2>Información Clave:</h2>
+                <p class="info-item">⏰ <strong>FECHA LÍMITE:</strong> Viernes 15 Nov • 23:59h</p>
+                <p class="info-item">🎲 <strong>SORTEO EN DIRECTO:</strong> Sábado 16 Nov • 12:00h</p>
+                <p>(Anunciaremos ganador en la comunidad de WhatsApp)</p>
+            </div>
+
+            <div class="seccion valor">
+                <p class="info-item">💎 <strong>PREMIO VALORADO EN 34€</strong></p>
+            </div>
+
+            <p class="hashtags">
+                #FrecuenzyCommunity #Sorteo #29Noviembre
+            </p>
+        </div>
+
+        <div class="bases-legales">
+            <h2>Bases Legales Completas del Sorteo</h2>
+            <ol>
+                <li>
+                    <strong>Organizador:</strong>
+                    El presente sorteo está organizado por <span class="placeholder">[Tu Nombre/Nombre de Empresa]</span>, con NIF/CIF <span class="placeholder">[Tu NIF/CIF]</span> y domicilio en <span class="placeholder">[Tu Dirección Completa]</span>.
+                </li>
+                <li>
+                    <strong>Ámbito y Duración:</strong>
+                    La participación está abierta a personas mayores de <span class="placeholder">[18]</span> años residentes en <span class="placeholder">[Territorio, ej: España, Provincia de...]</span>. El periodo de participación comienza el <span class="placeholder">[Fecha de inicio, ej: 14 de Noviembre]</span> y finaliza el Viernes 15 de Noviembre de 2025 a las 23:59h (hora peninsular española).
+                </li>
+                <li>
+                    <strong>Requisitos de Participación (Gratuita):</strong>
+                    La participación en el sorteo es gratuita y no implica ninguna obligación de compra. Para participar, es necesario cumplir con los siguientes tres requisitos:
+                    <ol type="a">
+                        <li>Compartir la story del sorteo en una Instagram story pública, etiquetando a la cuenta @frecuenzy.</li>
+                        <li>Ser miembro de la comunidad de WhatsApp "FrecuenzyCommunity".</li>
+                        <li>Reaccionar con el emoji "🔥" al mensaje del sorteo publicado en dicha comunidad.</li>
+                    </ol>
+                    El organizador se reserva el derecho de descalificar a los participantes que no cumplan todos los requisitos o que lo hagan de forma fraudulenta.
+                </li>
+                <li>
+                    <strong>Premio:</strong>
+                    El premio consiste en un (1) Tattoo Flash exclusivo de Frecuenzy y una (1) Burger Premium de Smash & Gorry. El valor total del premio es de 34€. El premio es válido para canjear el 29 de noviembre de 2025. El premio es personal, intransferible y no podrá ser canjeado por su valor en metálico.
+                </li>
+
+                <li>
+                    <strong>Selección del Ganador y Condición de Realización:</strong>
+                    <br>
+                    <span classT="condicion-sorteo">
+                        <strong>CONDICIÓN IMPORTANTE:</strong> El sorteo <span style="text-decoration: underline;">solo se celebrará</span> si el mensaje de anuncio del sorteo dentro de la comunidad de WhatsApp alcanza un mínimo de 100 reacciones (🔥) antes de la fecha límite (Viernes 15 Nov • 23:59h).
+                        <br>
+                        Si no se alcanza dicha cifra, el sorteo se considerará desierto y no se seleccionará ningún ganador.
+                    </span>
+                    <br>
+                    En caso de cumplirse la condición anterior, el sorteo se realizará el Sábado 16 de Noviembre de 2025 a las 12:00h. Se utilizará una plataforma de selección aleatoria <span class="placeholder">[Especificar herramienta, ej: AppSorteos]</span> entre todos los usuarios que hayan cumplido los 3 requisitos de participación. Se elegirá un (1) ganador y un (1) suplente.
+                </li>
+                <li>
+                    <strong>Comunicación y Entrega del Premio:</strong>
+                    El nombre/alias del ganador se anunciará en la comunidad de WhatsApp el 16 de Noviembre de 2025. Se contactará al ganador por mensaje privado <span class="placeholder">[Especificar cómo, ej: vía WhatsApp o Instagram]</span>. El ganador dispondrá de <span class="placeholder">[Ej: 48 horas]</span> para aceptar el premio. Si no responde en plazo, o renuncia al premio, se pasará al suplente.
+                </li>
+                <li>
+                    <strong>Fiscalidad:</strong>
+                    Al premio del presente sorteo le será de aplicación la legislación fiscal vigente. El premio está valorado en 34€, por lo que, al ser inferior a 300€, no está sujeto a retención de IRPF por parte del organizador, pero el ganador deberá declararlo en su correspondiente declaración de la renta.
+                </li>
+                <li>
+                    <strong>Protección de Datos (RGPD):</strong>
+                    Los datos personales (nombre de usuario de Instagram, número de teléfono en WhatsApp) serán tratados por <span class="placeholder">[Tu Nombre/Empresa]</span> con la única finalidad de gestionar el presente sorteo, seleccionar al ganador y entregar el premio. Los datos no se cederán a terceros, salvo obligación legal. Puede ejercer sus derechos de acceso, rectificación, supresión y oposición en <span class="placeholder">[Tu email de contacto]</span>.
+                </li>
+                <li>
+                    <strong>Exoneración de Responsabilidad (Meta):</strong>
+                    Este sorteo no está patrocinado, avalado, administrado ni asociado en modo alguno con Meta (Instagram/WhatsApp). Los participantes exoneran a Meta de toda responsabilidad derivada de este sorteo.
+                </li>
+                <li>
+                    <strong>Aceptación de las Bases:</strong>
+                    La participación en este sorteo implica la aceptación íntegra de las presentes bases legales.
+                </li>
+            </ol>
+        </div>
+        
+    </div>
+
+</body>
+</html>
