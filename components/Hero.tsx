@@ -7,9 +7,9 @@ const Hero: React.FC = () => {
     };
 
     return (
-        <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        <section className="relative h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0">
             <video
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-contain pointer-events-none"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-contain pointer-events-none md:object-cover"
                 autoPlay
                 loop
                 muted
@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
                 {/* <source src="/hero-background.webm" type="video/webm" /> */}
             </video>
             <div className="absolute inset-0 bg-black-abyss/60 z-10"></div>
-            <div className="relative z-20 text-center max-w-7xl px-6">
+            <div className="relative z-20 text-center max-w-7xl px-6 mt-0 md:-mt-10">
                 
                 {/* --- INICIO DE LA MODIFICACIÓN: Logo como Imagen --- */}
                 <img 
