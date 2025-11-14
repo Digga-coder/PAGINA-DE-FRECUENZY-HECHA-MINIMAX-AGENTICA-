@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -34,7 +33,8 @@ const App: React.FC = () => {
     return (
         <>
             <Header />
-            <main>
+            {/* --- CAMBIO: Añadimos padding-top de 72px para dejar espacio al header --- */}
+            <main className="pt-[72px]">
                 <Hero />
                 <Manifiesto />
                 <Experience />
