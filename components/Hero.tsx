@@ -7,11 +7,12 @@ const Hero: React.FC = () => {
     };
 
     return (
-        // Esta línea NUEVA añade padding en móvil (pt-20) para que no lo tape el header
-        <section className="relative h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0">
+        // --- CAMBIO: Quitamos h-screen. 
+        // Usamos min-h-[calc(100vh_-_72px)] para que ocupe EL RESTO de la pantalla
+        // y quitamos todo el padding (pt-20)
+        <section className="relative min-h-[calc(100vh_-_72px)] flex items-center justify-center overflow-hidden">
             <video
-                // Esta línea NUEVA usa 'object-contain' en móvil (se ve entero) 
-                // y 'object-cover' en PC (llena la pantalla)
+                // 'object-contain' en móvil, 'object-cover' en PC
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-contain pointer-events-none md:object-cover"
                 autoPlay
                 loop
@@ -25,8 +26,8 @@ const Hero: React.FC = () => {
             
             <div className="absolute inset-0 bg-black-abyss/60 z-10"></div>
             
-            // Esta línea NUEVA sube un poco el texto en PC (-mt-10)
-            <div className="relative z-20 text-center max-w-7xl px-6 mt-0 md:-mt-10">
+            // --- CAMBIO: Quitamos todo el padding/margin de aquí ---
+            <div className="relative z-20 text-center max-w-7xl px-6">
                 
                 <img 
                     src="/logo-frecuenzy-hero.svg" 
