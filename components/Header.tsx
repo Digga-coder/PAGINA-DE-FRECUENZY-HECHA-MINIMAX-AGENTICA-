@@ -2,43 +2,43 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const Header: React.FC = () => {
     const [hidden, setHidden] = useState(false);
-    // --- INICIO DE CAMBIOS ---
-    // 1. Añadimos estado para el menú móvil
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    
+    // --- INICIO DE CAMBIOS ---
+    // 1. Añadimos estado para saber si se ha hecho scroll
+    const [isScrolled, setIsScrolled] = useState(false);
     // --- FIN DE CAMBIOS ---
     
     const lastScroll = useRef(0);
-    const scrollTimeout = useRef<number | null>(null);
 
     useEffect(() => {
         const handleScroll = () => {
-            if (scrollTimeout.current) return;
+            const currentScroll = window.pageYOffset;
 
-            scrollTimeout.current = window.setTimeout(() => {
-                const currentScroll = window.pageYOffset;
+            // Lógica para ocultar header en scroll
+            if (currentScroll > lastScroll.current && currentScroll > 100) {
+                setHidden(true);
+            } else {
+                setHidden(false);
+            }
+            lastScroll.current = currentScroll;
 
-                if (currentScroll > lastScroll.current && currentScroll > 100) {
-                    setHidden(true);
-                } else {
-                    setHidden(false);
-                }
-
-                lastScroll.current = currentScroll;
-                scrollTimeout.current = null;
-            }, 100);
+            // --- INICIO DE CAMBIOS ---
+            // 2. Lógica para fondo transparente
+            if (currentScroll > 10) { // 10px de margen
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+            // --- FIN DE CAMBIOS ---
         };
-
+        
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => {
             window.removeEventListener('scroll', handleScroll);
-            if (scrollTimeout.current) {
-                clearTimeout(scrollTimeout.current);
-            }
         };
-    }, []);
+    }, []); // Se ejecuta solo al montar
 
-    // --- INICIO DE CAMBIOS ---
-    // 2. Modificamos los handlers para que cierren el menú al hacer clic
     const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
         e.preventDefault();
         document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
@@ -50,37 +50,39 @@ const Header: React.FC = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         setIsMobileMenuOpen(false); // Cierra el menú
     };
-    // --- FIN DE CAMBIOS ---
 
 
     return (
-        <header className={`fixed top-0 left-0 right-0 z-50 p-6 px-6 md:px-12 bg-black-abyss/80 backdrop-blur-md transition-transform duration-300 ease-in-out ${hidden ? '-translate-y-full' : 'translate-y-0'}`}>
+        // --- INICIO DE CAMBIOS ---
+        // 3. Aplicamos el fondo solo si 'isScrolled' es true O si el menú móvil está abierto
+        <header className={`
+            fixed top-0 left-0 right-0 z-50 p-6 px-6 md:px-12 
+            transition-all duration-300 ease-in-out 
+            ${hidden ? '-translate-y-full' : 'translate-y-0'}
+            ${(isScrolled || isMobileMenuOpen) ? 'bg-black-abyss/80 backdrop-blur-md' : 'bg-transparent'}
+        `}>
+        {/* --- FIN DE CAMBIOS --- */}
             <nav className="flex justify-between items-center max-w-[1400px] mx-auto">
                 
-                {/* --- INICIO DE CAMBIOS: Logo --- */}
-                {/* 3. Logo más grande (h-12) y con z-20 para estar sobre el menú */}
+                {/* Logo (h-12) y z-20 para estar sobre el menú */}
                 <a href="#" onClick={handleScrollToTop} className="no-underline z-20">
                     <img 
                         src="/logo-header.svg" 
                         alt="FRECUENZY Logo" 
-                        className="h-12 w-auto" // TAMAÑO AUMENTADO
+                        className="h-12 w-auto" 
                     />
                 </a>
-                {/* --- FIN DE CAMBIOS --- */}
 
-                {/* --- INICIO DE CAMBIOS: Botón Hamburguesa --- */}
-                {/* 4. Botón de menú móvil (solo visible en < md) */}
+                {/* Botón de menú móvil */}
                 <button 
-                    className="md:hidden text-white-crisp text-4xl z-20" // Hecho más grande
+                    className="md:hidden text-white-crisp text-4xl z-20" 
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     aria-label="Abrir menú"
                 >
                     {isMobileMenuOpen ? '×' : '☰'}
                 </button>
-                {/* --- FIN DE CAMBIOS --- */}
                 
-                {/* --- INICIO DE CAMBIOS: Lista de enlaces --- */}
-                {/* 5. Modificamos las clases para que sea un menú responsive */}
+                {/* Menú responsive */}
                 <ul className={`
                     ${isMobileMenuOpen ? 'flex' : 'hidden'} 
                     md:flex 
@@ -94,7 +96,6 @@ const Header: React.FC = () => {
                     <li><a href="#comunidad" onClick={(e) => handleScrollTo(e, 'comunidad')} className="text-white-matte no-underline text-2xl md:text-sm font-medium tracking-wider uppercase transition-colors duration-300 hover:text-magenta-neon">Comunidad</a></li>
                     <li><a href="#contacto" onClick={(e) => handleScrollTo(e, 'contacto')} className="text-white-matte no-underline text-2xl md:text-sm font-medium tracking-wider uppercase transition-colors duration-300 hover:text-magenta-neon">Contacto</a></li>
                 </ul>
-                {/* --- FIN DE CAMBIOS --- */}
             </nav>
         </header>
     );
