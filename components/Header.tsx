@@ -48,7 +48,7 @@ const Header: React.FC = () => {
             <nav className="flex justify-between items-center max-w-[1400px] mx-auto">
                 <a href="#" onClick={handleScrollToTop} className="no-underline">
                     <img 
-                        src="/logo-header.png" 
+                        src="/logo-header.svg" 
                         alt="FRECUENZY Logo" 
                         className="h-9 w-auto" 
                     />
