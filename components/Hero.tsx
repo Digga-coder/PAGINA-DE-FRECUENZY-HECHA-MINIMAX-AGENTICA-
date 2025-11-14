@@ -7,9 +7,6 @@ const Hero: React.FC = () => {
     };
 
     return (
-        // --- CAMBIO: Quitamos h-screen. 
-        // Usamos min-h-[calc(100vh_-_72px)] para que ocupe EL RESTO de la pantalla
-        // y quitamos todo el padding (pt-20)
         <section className="relative min-h-[calc(100vh_-_72px)] flex items-center justify-center overflow-hidden">
             <video
                 // 'object-contain' en móvil, 'object-cover' en PC
@@ -26,8 +23,9 @@ const Hero: React.FC = () => {
             
             <div className="absolute inset-0 bg-black-abyss/60 z-10"></div>
             
-            // --- CAMBIO: Quitamos todo el padding/margin de aquí ---
-            <div className="relative z-20 text-center max-w-7xl px-6">
+            {/* --- INICIO DE LA CORRECCIÓN: Añadido w-full y mx-auto --- */}
+            <div className="relative z-20 text-center w-full max-w-7xl px-6 mx-auto">
+            {/* --- FIN DE LA CORRECCIÓN --- */}
                 
                 <img 
                     src="/logo-frecuenzy-hero.svg" 
