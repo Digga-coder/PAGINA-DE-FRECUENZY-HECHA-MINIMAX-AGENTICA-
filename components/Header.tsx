@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from 'react';
 const Header: React.FC = () => {
     const [hidden, setHidden] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [isScrolled, setIsScrolled] = useState(false);
     const lastScroll = useRef(0);
 
     useEffect(() => {
@@ -17,13 +16,6 @@ const Header: React.FC = () => {
                 setHidden(false);
             }
             lastScroll.current = currentScroll;
-
-            // Lógica para fondo transparente
-            if (currentScroll > 10) { // 10px de margen
-                setIsScrolled(true);
-            } else {
-                setIsScrolled(false);
-            }
         };
         
         window.addEventListener('scroll', handleScroll, { passive: true });
@@ -46,21 +38,21 @@ const Header: React.FC = () => {
 
 
     return (
-        // El header se vuelve oscuro si se hace scroll O si el menú móvil está abierto
+        // --- CAMBIO: p-4 (más corto) y bg-black-abyss (sólido) ---
         <header className={`
-            fixed top-0 left-0 right-0 z-50 p-6 px-6 md:px-12 
-            transition-all duration-300 ease-in-out 
+            fixed top-0 left-0 right-0 z-50 p-4 px-6 md:px-12 
+            bg-black-abyss
+            transition-transform duration-300 ease-in-out 
             ${hidden ? '-translate-y-full' : 'translate-y-0'}
-            ${(isScrolled || isMobileMenuOpen) ? 'bg-black-abyss/80 backdrop-blur-md' : 'bg-transparent'}
         `}>
             <nav className="flex justify-between items-center max-w-[1400px] mx-auto">
                 
-                {/* Logo (h-12) y z-20 para estar sobre el menú */}
                 <a href="#" onClick={handleScrollToTop} className="no-underline z-20">
                     <img 
                         src="/logo-header.svg" 
                         alt="FRECUENZY Logo" 
-                        className="h-12 w-auto" 
+                        // --- CAMBIO: h-10 (40px) ---
+                        className="h-10 w-auto" 
                     />
                 </a>
 
@@ -73,19 +65,16 @@ const Header: React.FC = () => {
                     {isMobileMenuOpen ? '×' : '☰'}
                 </button>
                 
-                {/* --- INICIO DE LA MODIFICACIÓN --- */}
-                {/* Cambiamos 'bg-black-abyss' por 'bg-black-abyss/90 backdrop-blur-lg'.
-                  Esto hace que el fondo del menú abierto sea 90% opaco y desenfoque el fondo.
-                */}
+                {/* Menú responsive */}
                 <ul className={`
                     ${isMobileMenuOpen ? 'flex' : 'hidden'} 
                     md:flex 
                     fixed md:relative top-0 left-0 w-full h-screen md:h-auto md:w-auto 
-                    bg-black-abyss/90 backdrop-blur-lg md:bg-transparent md:backdrop-blur-none
+                    // --- CAMBIO: bg-black-abyss (sólido) ---
+                    bg-black-abyss md:bg-transparent 
                     flex-col md:flex-row items-center justify-center md:justify-start 
                     gap-10 list-none z-10
                 `}>
-                {/* --- FIN DE LA MODIFICACIÓN --- */}
                     <li><a href="#eventos" onClick={(e) => handleScrollTo(e, 'eventos')} className="text-white-matte no-underline text-2xl md:text-sm font-medium tracking-wider uppercase transition-colors duration-300 hover:text-magenta-neon">Eventos</a></li>
                     <li><a href="#manifiesto" onClick={(e) => handleScrollTo(e, 'manifiesto')} className="text-white-matte no-underline text-2xl md:text-sm font-medium tracking-wider uppercase transition-colors duration-300 hover:text-magenta-neon">Manifiesto</a></li>
                     <li><a href="#comunidad" onClick={(e) => handleScrollTo(e, 'comunidad')} className="text-white-matte no-underline text-2xl md:text-sm font-medium tracking-wider uppercase transition-colors duration-300 hover:text-magenta-neon">Comunidad</a></li>
