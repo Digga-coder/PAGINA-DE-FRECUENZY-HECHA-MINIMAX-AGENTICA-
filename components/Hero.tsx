@@ -25,7 +25,7 @@ const Hero: React.FC = () => {
                 
                 {/* --- INICIO DE LA MODIFICACIÓN: Logo como Imagen --- */}
                 <img 
-                    src="/logo-frecuenzy-hero.png" 
+                    src="/logo-frecuenzy-hero.svg" 
                     alt="Logo FRECUENZY" 
                     className="w-full max-w-2xl mx-auto mb-8 animate-pulse" 
                 />
