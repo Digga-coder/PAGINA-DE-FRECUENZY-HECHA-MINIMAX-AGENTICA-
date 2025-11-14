@@ -9,7 +9,7 @@ const Hero: React.FC = () => {
     return (
         <section className="relative h-screen flex items-center justify-center overflow-hidden">
             <video
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-cover pointer-events-none"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-contain pointer-events-none"
                 autoPlay
                 loop
                 muted
