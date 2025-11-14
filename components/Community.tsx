@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const Community: React.FC = () => {
@@ -18,6 +17,18 @@ const Community: React.FC = () => {
                     <a href="#" className="inline-block py-4 px-12 bg-magenta-neon text-white-crisp text-sm font-semibold no-underline uppercase tracking-widest border-none cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,0,255,0.5)]">
                         SOLICITAR MEMBRESÍA
                     </a>
+
+                    {/* --- INICIO DEL BOTÓN PARA EL SORTEO --- */}
+                    <a 
+                        href="/sorteo.html" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-block mt-6 ml-0 md:ml-6 py-4 px-12 bg-transparent border-2 border-magenta-neon text-magenta-neon text-sm font-semibold no-underline uppercase tracking-widest cursor-pointer transition-all duration-300 hover:scale-105 hover:bg-magenta-neon hover:text-white-crisp"
+                    >
+                        🎁 ¡VER SORTEO EXCLUSIVO!
+                    </a>
+                    {/* --- FIN DEL BOTÓN PARA EL SORTEO --- */}
+
                 </div>
                 <div className="hidden md:block text-center text-[200px] text-magenta-neon opacity-30">
                     <span>◉</span>
