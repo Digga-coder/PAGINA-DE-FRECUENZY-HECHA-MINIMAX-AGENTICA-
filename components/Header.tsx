@@ -46,7 +46,13 @@ const Header: React.FC = () => {
     return (
         <header className={`fixed top-0 left-0 right-0 z-50 p-6 px-6 md:px-12 bg-black-abyss/80 backdrop-blur-md transition-transform duration-300 ease-in-out ${hidden ? '-translate-y-full' : 'translate-y-0'}`}>
             <nav className="flex justify-between items-center max-w-[1400px] mx-auto">
-                <a href="#" onClick={handleScrollToTop} className="text-3xl font-bebas text-magenta-neon tracking-widest no-underline">FRECUENZY</a>
+                <a href="#" onClick={handleScrollToTop} className="no-underline">
+                    <img 
+                        src="/logo-header.png" 
+                        alt="FRECUENZY Logo" 
+                        className="h-9 w-auto" 
+                    />
+                </a>
                 <ul className="hidden md:flex gap-10 list-none">
                     <li><a href="#eventos" onClick={(e) => handleScrollTo(e, 'eventos')} className="text-white-matte no-underline text-sm font-medium tracking-wider uppercase transition-colors duration-300 hover:text-magenta-neon">Eventos</a></li>
                     <li><a href="#manifiesto" onClick={(e) => handleScrollTo(e, 'manifiesto')} className="text-white-matte no-underline text-sm font-medium tracking-wider uppercase transition-colors duration-300 hover:text-magenta-neon">Manifiesto</a></li>
