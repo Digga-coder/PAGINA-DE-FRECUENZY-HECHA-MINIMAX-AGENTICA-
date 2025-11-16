@@ -66,7 +66,16 @@ const Hero: React.FC = () => {
             </video>
             <div className="absolute inset-0 bg-black-abyss/60 z-10"></div>
             <div className="relative z-20 text-center max-w-7xl px-6">
-                <div className="font-bebas text-[80px] md:text-[120px] text-magenta-neon mb-8 animate-pulse">FRECUENZY</div>
+                
+                {/* --- INICIO DE LA MODIFICACIÓN: Texto por Logo SVG --- */}
+                {/* Asegúrate de tener 'logo-frecuenzy.svg' en tu carpeta /public */}
+                <img 
+                    src="/logo-frecuenzy.svg" 
+                    alt="Logo Frecuenzy" 
+                    className="w-full max-w-3xl mx-auto mb-8 animate-pulse" 
+                />
+                {/* --- FIN DE LA MODIFICACIÓN --- */}
+
                 <h1 className="font-bebas text-5xl md:text-7xl mb-6 animate-glitchIn">NO SEGUIMOS MODAS. LAS CREAMOS.</h1>
                 <p className="text-lg text-gray-fog font-medium mb-12">El epicentro de la cultura electrónica de vanguardia</p>
                 <a href="#eventos" onClick={handleScrollTo} className="inline-block py-4 px-12 bg-magenta-neon text-white-crisp text-sm font-semibold no-underline uppercase tracking-widest border-none cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,0,255,0.5)]">
