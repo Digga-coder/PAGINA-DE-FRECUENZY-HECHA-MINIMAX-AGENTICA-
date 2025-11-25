@@ -67,18 +67,16 @@ const Hero: React.FC = () => {
             
             <div className="relative z-20 text-center max-w-7xl px-6">
                 
-                {/* --- LOGO CORREGIDO A WEBP --- */}
+                {/* --- LOGO OPTIMIZADO PARA MÓVIL --- */}
                 <div className="mb-8 animate-pulse flex justify-center">
-                    {/* IMPORTANTE: Si tu logo está en la carpeta raíz 'public', usa "/logo-frecuenzy-hero.webp" */}
-                    {/* Si está dentro de la carpeta del evento (como en tu foto), usa "/events/29nov2025/logo-frecuenzy-hero.webp" */}
-                    {/* He puesto la ruta raíz que es lo estándar, pero si no sale, prueba añadiendo la ruta larga */}
                     <img 
-                        src="/logo-frecuenzy-hero.webp" 
+                        src="/logo-frecuenzy-hero.png?v=mobile" 
                         alt="FRECUENZY Logo" 
-                        className="w-[300px] md:w-[600px] h-auto object-contain drop-shadow-[0_0_15px_rgba(255,0,255,0.6)]"
+                        loading="eager"
+                        className="w-[280px] md:w-[600px] h-auto object-contain drop-shadow-[0_0_15px_rgba(255,0,255,0.6)]"
                     />
                 </div>
-                {/* ----------------------------- */}
+                {/* ---------------------------------- */}
 
                 <h1 className="font-bebas text-5xl md:text-7xl mb-6 animate-glitchIn">NO SEGUIMOS MODAS. LAS CREAMOS.</h1>
                 <p className="text-lg text-gray-fog font-medium mb-12">El epicentro de la cultura electrónica de vanguardia</p>
