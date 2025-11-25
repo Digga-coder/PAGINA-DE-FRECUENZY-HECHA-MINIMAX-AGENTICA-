@@ -8,19 +8,15 @@ const Hero: React.FC = () => {
         if (!video) return;
 
         const attemptPlay = () => {
-            // Configuración crítica para iOS y Android
             video.muted = true;
             video.setAttribute('playsinline', '');
             video.setAttribute('webkit-playsinline', '');
 
             const playPromise = video.play();
             if (playPromise !== undefined) {
-                playPromise
-                    .then(() => console.log('Video reproduciendo'))
-                    .catch(error => {
-                        console.log('Reintentando autoplay...', error);
-                        setTimeout(() => video.play().catch(() => {}), 100);
-                    });
+                playPromise.then(() => {}).catch(() => {
+                    setTimeout(() => video.play().catch(() => {}), 100);
+                });
             }
         };
 
@@ -30,10 +26,7 @@ const Hero: React.FC = () => {
             video.addEventListener('canplay', attemptPlay, { once: true });
         }
         
-        // Forzar reproducción al primer toque (solución para móviles estrictos)
-        const forcePlay = () => {
-            if(video.paused) video.play();
-        };
+        const forcePlay = () => { if(video.paused) video.play(); };
         window.addEventListener('touchstart', forcePlay, { once: true });
         window.addEventListener('click', forcePlay, { once: true });
 
@@ -50,7 +43,6 @@ const Hero: React.FC = () => {
     };
 
     return (
-        // CAMBIO: Usamos min-h para asegurar que cubra la pantalla pero permita scroll si es necesario
         <section className="relative w-full h-[calc(100vh-72px)] min-h-[500px] flex items-center justify-center overflow-hidden bg-black-abyss">
             
             {/* VIDEO DE FONDO */}
@@ -66,27 +58,26 @@ const Hero: React.FC = () => {
                 disableRemotePlayback
                 x-webkit-airplay="deny"
             >
-                {/* Ruta correcta del video */}
                 <source src="/events/29nov2025/hero-background.mp4" type="video/mp4" />
             </video>
             
-            {/* CONTENIDO PRINCIPAL */}
+            {/* CONTENIDO */}
             <div className="relative z-20 text-center max-w-7xl px-6 flex flex-col items-center justify-center w-full">
                 
                 <div className="mb-8 animate-pulse flex justify-center w-full">
-                    {/* TRUCO DEFINITIVO PARA LA CAJA NEGRA:
-                       - mix-blend-screen: Hace transparente lo negro.
-                       - contrast-125 brightness-110: Aumenta el contraste para que el gris oscuro del fondo se convierta en negro puro y desaparezca totalmente.
+                    {/* SOLUCIÓN DEFINITIVA CAJA NEGRA:
+                        mix-blend-lighten: Funciona mejor que 'screen' para fondos que no son negro puro.
+                        brightness-200 contrast-200: Queman el fondo oscuro para que desaparezca.
                     */}
                     <img 
-                        src="/events/29nov2025/logo-frecuenzy-hero.webp?v=final5" 
+                        src="/events/29nov2025/logo-frecuenzy-hero.webp?v=final6" 
                         alt="FRECUENZY Logo" 
                         loading="eager"
-                        className="w-[280px] md:w-[600px] h-auto object-contain mix-blend-screen contrast-125 brightness-110 drop-shadow-[0_0_25px_rgba(255,0,255,0.4)]"
+                        className="w-[280px] md:w-[600px] h-auto object-contain mix-blend-lighten brightness-125 contrast-125"
                     />
                 </div>
 
-                <h1 className="font-bebas text-5xl md:text-7xl mb-6 animate-glitchIn drop-shadow-lg text-white-crisp mix-blend-screen">
+                <h1 className="font-bebas text-5xl md:text-7xl mb-6 animate-glitchIn drop-shadow-lg text-white-crisp mix-blend-overlay">
                     NO SEGUIMOS MODAS. LAS CREAMOS.
                 </h1>
                 
@@ -99,7 +90,6 @@ const Hero: React.FC = () => {
                 </a>
             </div>
             
-            {/* Indicador de scroll sutil */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0.5 h-12 bg-gradient-to-t from-magenta-neon to-transparent animate-scrollPulse z-20"></div>
         </section>
     );
