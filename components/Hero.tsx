@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
 const Hero: React.FC = () => {
-    // --- INICIO DE LA MODIFICACIÓN ---
+    // --- LÓGICA DE VIDEO (MANTIENE LA ORIGINAL) ---
     const videoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
@@ -39,7 +39,6 @@ const Hero: React.FC = () => {
             video.removeEventListener('canplay', attemptPlay);
         };
     }, []);
-    // --- FIN DE LA MODIFICACIÓN ---
 
     const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
@@ -65,16 +64,17 @@ const Hero: React.FC = () => {
                 <source src="/video1.webm" type="video/webm" />
             </video>
             <div className="absolute inset-0 bg-black-abyss/60 z-10"></div>
+            
             <div className="relative z-20 text-center max-w-7xl px-6">
-                
-                {/* --- INICIO DE LA MODIFICACIÓN: Texto por Logo SVG --- */}
-                {/* Asegúrate de tener 'logo-frecuenzy.svg' en tu carpeta /public */}
-                <img 
-                    src="/logo-frecuenzy.svg" 
-                    alt="Logo Frecuenzy" 
-                    className="w-full max-w-3xl mx-auto mb-8 animate-pulse" 
-                />
-                {/* --- FIN DE LA MODIFICACIÓN --- */}
+                {/* --- AQUÍ ESTÁ EL CAMBIO DEL LOGO --- */}
+                <div className="mb-8 animate-pulse flex justify-center">
+                    <img 
+                        src="/logo.svg" 
+                        alt="FRECUENZY Logo" 
+                        className="w-[300px] md:w-[500px] h-auto object-contain drop-shadow-[0_0_15px_rgba(255,0,255,0.6)]"
+                    />
+                </div>
+                {/* ------------------------------------ */}
 
                 <h1 className="font-bebas text-5xl md:text-7xl mb-6 animate-glitchIn">NO SEGUIMOS MODAS. LAS CREAMOS.</h1>
                 <p className="text-lg text-gray-fog font-medium mb-12">El epicentro de la cultura electrónica de vanguardia</p>
