@@ -8,6 +8,7 @@ const Hero: React.FC = () => {
         if (!video) return;
 
         const attemptPlay = () => {
+            // Configuración crítica para iOS y Android
             video.muted = true;
             video.setAttribute('playsinline', '');
             video.setAttribute('webkit-playsinline', '');
@@ -29,6 +30,7 @@ const Hero: React.FC = () => {
             video.addEventListener('canplay', attemptPlay, { once: true });
         }
         
+        // Forzar reproducción al primer toque (solución para móviles estrictos)
         const forcePlay = () => {
             if(video.paused) video.play();
         };
@@ -48,12 +50,13 @@ const Hero: React.FC = () => {
     };
 
     return (
-        <section className="relative h-[100svh] flex items-center justify-center overflow-hidden">
+        // CAMBIO: Usamos min-h para asegurar que cubra la pantalla pero permita scroll si es necesario
+        <section className="relative w-full h-[calc(100vh-72px)] min-h-[500px] flex items-center justify-center overflow-hidden bg-black-abyss">
             
             {/* VIDEO DE FONDO */}
             <video
                 ref={videoRef}
-                className="absolute inset-0 w-full h-full object-cover pointer-events-none z-0"
+                className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none z-0"
                 autoPlay
                 loop
                 muted
@@ -63,42 +66,41 @@ const Hero: React.FC = () => {
                 disableRemotePlayback
                 x-webkit-airplay="deny"
             >
+                {/* Ruta correcta del video */}
                 <source src="/events/29nov2025/hero-background.mp4" type="video/mp4" />
             </video>
             
-            {/* SIN CAPA OSCURA (OVERLAY ELIMINADO)
-               El video se verá con sus colores originales.
-            */}
-            
-            <div className="relative z-20 text-center max-w-7xl px-6">
+            {/* CONTENIDO PRINCIPAL */}
+            <div className="relative z-20 text-center max-w-7xl px-6 flex flex-col items-center justify-center w-full">
                 
-                <div className="mb-8 animate-pulse flex justify-center">
-                    {/* TRUCO MAGICO: mix-blend-screen 
-                        Esto borra el fondo negro de la imagen automáticamente 
+                <div className="mb-8 animate-pulse flex justify-center w-full">
+                    {/* TRUCO DEFINITIVO PARA LA CAJA NEGRA:
+                       - mix-blend-screen: Hace transparente lo negro.
+                       - contrast-125 brightness-110: Aumenta el contraste para que el gris oscuro del fondo se convierta en negro puro y desaparezca totalmente.
                     */}
                     <img 
-                        src="/events/29nov2025/logo-frecuenzy-hero.webp?v=final3" 
+                        src="/events/29nov2025/logo-frecuenzy-hero.webp?v=final5" 
                         alt="FRECUENZY Logo" 
                         loading="eager"
-                        className="w-[280px] md:w-[600px] h-auto object-contain drop-shadow-[0_0_15px_rgba(255,0,255,0.6)] mix-blend-screen"
+                        className="w-[280px] md:w-[600px] h-auto object-contain mix-blend-screen contrast-125 brightness-110 drop-shadow-[0_0_25px_rgba(255,0,255,0.4)]"
                     />
                 </div>
 
                 <h1 className="font-bebas text-5xl md:text-7xl mb-6 animate-glitchIn drop-shadow-lg text-white-crisp mix-blend-screen">
                     NO SEGUIMOS MODAS. LAS CREAMOS.
                 </h1>
-                <p className="text-lg text-gray-fog font-medium mb-12 drop-shadow-md bg-black/20 inline-block px-4 py-2 rounded backdrop-blur-sm">
+                
+                <p className="text-lg text-gray-fog font-medium mb-12 drop-shadow-md bg-black/40 inline-block px-6 py-2 rounded-full backdrop-blur-sm border border-white/10">
                     El epicentro de la cultura electrónica de vanguardia
                 </p>
                 
-                <div>
-                    <a href="#eventos" onClick={handleScrollTo} className="inline-block py-4 px-12 bg-magenta-neon text-white-crisp text-sm font-semibold no-underline uppercase tracking-widest border-none cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,0,255,0.5)]">
-                        VER PRÓXIMOS EVENTOS
-                    </a>
-                </div>
+                <a href="#eventos" onClick={handleScrollTo} className="inline-block py-4 px-12 bg-magenta-neon text-white-crisp text-sm font-semibold no-underline uppercase tracking-widest border-none cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,0,255,0.5)]">
+                    VER PRÓXIMOS EVENTOS
+                </a>
             </div>
             
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-0.5 h-16 bg-gradient-to-t from-magenta-neon to-transparent animate-scrollPulse z-20"></div>
+            {/* Indicador de scroll sutil */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0.5 h-12 bg-gradient-to-t from-magenta-neon to-transparent animate-scrollPulse z-20"></div>
         </section>
     );
 };
