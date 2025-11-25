@@ -59,15 +59,18 @@ const Hero: React.FC = () => {
                 disableRemotePlayback
                 x-webkit-airplay="deny"
             >
-                {/* NOTE: Asegúrate de que estos vídeos están en la carpeta /public */}
-                <source src="/video1.mp4" type="video/mp4" />
-                <source src="/video1.webm" type="video/webm" />
+                {/* --- AQUÍ ESTÁ EL CAMBIO DEL VIDEO --- */}
+                {/* Apuntamos a la ruta correcta según tu captura de pantalla */}
+                <source src="/events/29nov2025/hero-background.mp4" type="video/mp4" />
+                {/* ----------------------------------- */}
             </video>
+            
+            {/* Capa oscura superpuesta (Overlay) */}
             <div className="absolute inset-0 bg-black-abyss/60 z-10"></div>
             
             <div className="relative z-20 text-center max-w-7xl px-6">
                 
-                {/* --- LOGO OPTIMIZADO PARA MÓVIL --- */}
+                {/* --- LOGO --- */}
                 <div className="mb-8 animate-pulse flex justify-center">
                     <img 
                         src="/logo-frecuenzy-hero.png?v=mobile" 
@@ -76,7 +79,7 @@ const Hero: React.FC = () => {
                         className="w-[280px] md:w-[600px] h-auto object-contain drop-shadow-[0_0_15px_rgba(255,0,255,0.6)]"
                     />
                 </div>
-                {/* ---------------------------------- */}
+                {/* ------------ */}
 
                 <h1 className="font-bebas text-5xl md:text-7xl mb-6 animate-glitchIn">NO SEGUIMOS MODAS. LAS CREAMOS.</h1>
                 <p className="text-lg text-gray-fog font-medium mb-12">El epicentro de la cultura electrónica de vanguardia</p>
